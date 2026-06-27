@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Theft Auto VI - Pre-Order Official Site</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles_v2.css">
+</head>
+<body>
+    <!-- Fullscreen Activation Overlay -->
+    <div class="activation-overlay" id="activation-screen">
+        <div class="activation-card">
+            <div class="activation-header">
+                <div class="activation-logo">
+                    <span class="r-text">R</span><span class="star-icon">★</span>
+                </div>
+                <h2>Activation Required</h2>
+                <p>Please enter your unique 16-character access code below to unlock early pre-order access.</p>
+            </div>
+            <div class="activation-body">
+                <div class="input-group">
+                    <input type="text" id="activation-key-input" placeholder="GTA6-XXXX-XXXX-XXXX-XXXX" maxlength="24" autocomplete="off" spellcheck="false">
+                    <span class="focus-border"></span>
+                </div>
+                <div class="error-container" id="activation-error"></div>
+                <button class="btn-activate" id="btn-activate-key">
+                    <span>Activate Access Code</span>
+                </button>
+            </div>
+            <div class="activation-footer">
+                <p>This key will lock itself securely to this PC upon activation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Wrapper with High-Res Image and Gradient Mask -->
+    <div class="bg-wrapper">
+        <div class="bg-image"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#" class="logo-link">
+                <!-- Rockstar-style R* logo or text badge -->
+                <div class="rockstar-logo">
+                    <span class="r-text">R</span><span class="star-icon">★</span>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link">GAMES</a>
+                <a href="#" class="nav-link">GAME ADD-ONS</a>
+                <a href="#" class="nav-link active">GTA+</a>
+                <a href="#" class="nav-link">MERCHANDISE</a>
+                <a href="#" class="nav-link">FEATURED</a>
+            </nav>
+            <div class="header-right">
+                <button class="search-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" class="icon">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Landing Screen -->
+    <main class="main-content">
+        <div class="hero-container">
+            <div class="hero-left">
+                <!-- Release Badge -->
+                <div class="release-badge">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">Releases November 19, 2026</span>
+                    <span class="rating-badge">RATING R 17+</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="main-title">
+                    Welcome back to <span class="gradient-text">Vice City.</span>
+                </h1>
+                
+                <p class="main-description">
+                    The biggest, most immersive evolution of the Grand Theft Auto series yet. Reserve your copy — first wave ships day one.
+                </p>
+
+                <!-- Countdown Timer Grid -->
+                <div class="countdown-grid">
+                    <div class="countdown-card">
+                        <span class="countdown-val" id="days">145</span>
+                        <span class="countdown-label">DAYS</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="countdown-val" id="hours">10</span>
+                        <span class="countdown-label">HOURS</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="countdown-val" id="mins">18</span>
+                        <span class="countdown-label">MINS</span>
+                    </div>
+                    <div class="countdown-card">
+                        <span class="countdown-val" id="secs">12</span>
+                        <span class="countdown-label">SECS</span>
+                    </div>
+                </div>
+
+                <!-- Platform Select -->
+                <div class="platform-selection">
+                    <h2 class="platform-title">Choose your platform to pre-order</h2>
+                    <div class="platform-buttons">
+                        <!-- PlayStation 5 -->
+                        <button class="platform-btn ps5-btn" id="btn-ps5">
+                            <span class="platform-logo-wrapper">
+                                <svg viewBox="0 0 24 24" class="platform-logo">
+                                    <path d="M1.742 16.732c-.08-.178-.066-.356.04-.533l.972-1.579c1.66-2.697 4.298-4.299 7.915-4.802 1.343-.186 2.665-.227 3.968-.12v-1.12c0-1.25-.26-2.18-.783-2.793-.41-.482-.992-.723-1.747-.723-.538 0-1.04.14-1.506.422a4.417 4.417 0 0 0-1.42 1.543c-.092.179-.247.284-.464.316l-1.636.242c-.22.033-.404-.047-.552-.239-.176-.23-.213-.48-.11-.75C7.94 4.544 9.176 3.447 10.73 3.08a7.013 7.013 0 0 1 2.378-.027c1.848.272 3.197 1.157 4.047 2.656.634 1.12.95 2.535.95 4.248v2.44c2.812 1.05 4.57 2.87 5.275 5.462.138.51-.01 1.054-.442 1.405-.286.23-.62.346-1.002.346h-1.05c-.17 0-.32-.086-.452-.26-.822-1.077-1.89-1.91-3.208-2.5-.503-.227-1.026-.412-1.57-.556v1.442c0 .942.234 1.637.7 2.083.336.321.782.482 1.338.482.457 0 .894-.112 1.312-.336.216-.115.422-.09.617.073l1.196.994c.18.15.228.345.143.585-.504.81-1.33 1.455-2.48 1.936a7.17 7.17 0 0 1-2.825.438c-1.802-.128-3.076-.848-3.823-2.162-.486-.856-.73-1.954-.73-3.295V15.02c-1.633.243-3.243.663-4.828 1.26a19.262 19.262 0 0 0-4.053 2.029c-.198.133-.393.119-.586-.04l-1.39-1.152a.498.498 0 0 1-.167-.385z"/>
+                                </svg>
+                            </span>
+                            <span class="platform-text-wrapper">
+                                <span class="platform-name">PlayStation 5</span>
+                                <span class="platform-sub">PRE-ORDER</span>
+                            </span>
+                            <span class="btn-chevron">
+                                <svg viewBox="0 0 24 24" class="icon"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </span>
+                        </button>
+
+                        <!-- Xbox Series X|S -->
+                        <button class="platform-btn xbox-btn" id="btn-xbox">
+                            <span class="platform-logo-wrapper">
+                                <svg viewBox="0 0 24 24" class="platform-logo">
+                                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm.05 1.57c1.78.02 3.49.62 4.96 1.72-.61.64-1.5 1.25-2.53 1.77-2.31-1.15-4.63-1.15-6.94 0-1.03-.52-1.92-1.13-2.53-1.77 1.47-1.1 3.18-1.7 4.96-1.72.03-.01.05-.01.08 0zm-7.6 3.12c.57.6 1.4 1.17 2.37 1.67-.53.51-1.07 1.13-1.57 1.83C4.2 8.84 3.73 7.6 3.4 6.27c.3.13.7.27 1.05.42zm15.1 0c.35-.15.75-.29 1.05-.42-.33 1.33-.8 2.57-1.85 2.92-.5-.7-1.04-1.32-1.57-1.83.97-.5 1.8-1.07 2.37-1.67zM12 9.07c1.65.73 3.12 1.79 4.3 3.09-1.28.91-2.73 1.54-4.3 1.82-1.57-.28-3.02-.91-4.3-1.82 1.18-1.3 2.65-2.36 4.3-3.09zm-8.25 1.4c.54-.78 1.12-1.46 1.68-2.02.48.51.98 1.11 1.45 1.76-1.1.8-2.05 1.76-2.78 2.82-.23-.84-.33-1.7-.35-2.56zm16.5 0c-.02.86-.12 1.72-.35 2.56-.73-1.06-1.68-2.02-2.78-2.82.47-.65.97-1.25 1.45-1.76.56.56 1.14 1.24 1.68 2.02zm-15.82 4.1c.64-.8 1.44-1.51 2.35-2.12.87.67 1.86 1.17 2.93 1.47-.94 1.51-1.88 3.14-2.57 4.96-1.12-.76-2.05-1.79-2.71-3.01v-1.3zm15.14 0v1.3c-.66 1.22-1.59 2.25-2.71 3.01-.69-1.82-1.63-3.45-2.57-4.96 1.07-.3 2.06-.8 2.93-1.47.91.61 1.71 1.32 2.35 2.12zm-7.57 1.42c1.3.17 2.53-.29 3.57-.96.67 1.49 1.48 3.09 2.15 4.8-.62.33-1.28.59-1.98.78-.63-1.09-1.53-2.61-2.49-4.14-.41-.65-.83-1.28-1.25-1.92v1.44zm-2.49 3.84c.67-1.71 1.48-3.31 2.15-4.8 1.04.67 2.27 1.13 3.57.96v-1.44c-.42.64-.84 1.27-1.25 1.92-.96 1.53-1.86 3.05-2.49 4.14-.7-.19-1.36-.45-1.98-.78z"/>
+                                </svg>
+                            </span>
+                            <span class="platform-text-wrapper">
+                                <span class="platform-name">Xbox Series X|S</span>
+                                <span class="platform-sub">PRE-ORDER</span>
+                            </span>
+                            <span class="btn-chevron">
+                                <svg viewBox="0 0 24 24" class="icon"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Footer Ticker & Specs -->
+                <div class="hero-footer-stats">
+                    <div class="stat-item ticker-item">
+                        <span class="pulse-dot"></span>
+                        <span class="stat-text" id="preorder-count"><span class="count-num">20,584</span> pre-orders in the last 24h</span>
+                    </div>
+                    <div class="stat-item">
+                        <svg viewBox="0 0 24 24" class="stat-icon-svg"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        <span class="stat-text">Secure checkout · 3-D Secure 2.2</span>
+                    </div>
+                    <div class="stat-item promo-item">
+                        <svg viewBox="0 0 24 24" class="stat-icon-svg"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 10 10 10-4.48 10-10S17.51 2 11.99 2zm4.3 14.3L11 13V7h1.5v5.25l4.5 2.67-.71 1.38z"/></svg>
+                        <span class="stat-text">Order before <strong class="highlight-date">November 19</strong> to get the <strong class="highlight-pack">Vintage Vice City Pack</strong> at no additional cost</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Unified Premium Modal Overlay -->
+    <div class="modal-overlay" id="modal-container">
+        <div class="modal-card" id="modal-card">
+            
+            <!-- STAGE 0: SELECT EDITION -->
+            <div class="modal-stage active" id="stage-select-edition">
+                <div class="store-header" id="select-store-header">
+                    <span class="store-title" id="select-store-title">MICROSOFT STORE · SELECT EDITION</span>
+                    <button class="close-modal-btn" aria-label="Close modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <a href="#" class="back-link btn-back-landing">← Back to editions</a>
+                    
+                    <h3 class="modal-title-main" id="select-edition-heading">Choose your GTA VI Edition</h3>
+                    <p class="modal-subtitle-main">Select the digital edition you want to pre-order on your account.</p>
+                    
+                    <div class="editions-grid">
+                        <div class="edition-card selected" id="card-standard-edition" data-edition="standard" data-price="69.99">
+                            <img src="assets/gta6_cover.png" alt="GTA VI Standard Edition" class="edition-cover">
+                            <h4 class="edition-title">Standard Edition</h4>
+                            <p class="edition-desc">Pre-order to get the base game and exclusive digital pre-order bonuses.</p>
+                            <span class="edition-price">£69.99</span>
+                        </div>
+                        <div class="edition-card" id="card-ultimate-edition" data-edition="ultimate" data-price="99.99">
+                            <img src="assets/gta6_ultimate_edition.png" alt="GTA VI Ultimate Edition" class="edition-cover">
+                            <h4 class="edition-title">Ultimate Edition</h4>
+                            <p class="edition-desc">An exclusive collection of articles related to all aspects of Jason and Lucia's story.</p>
+                            <span class="edition-price">£99.99</span>
+                        </div>
+                    </div>
+
+                    <div class="confirm-actions" style="margin-top: 0;">
+                        <button class="store-action-btn" id="btn-next-edition">Next: Link Account</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 1: LINK ACCOUNT -->
+            <div class="modal-stage" id="stage-link">
+                <div class="store-header" id="link-store-header">
+                    <span class="store-title" id="link-store-title">MICROSOFT STORE · LINK ACCOUNT</span>
+                    <button class="close-modal-btn" aria-label="Close modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <a href="#" class="back-link" id="btn-back-to-edition">← Back to editions</a>
+                    
+                    <h3 class="modal-title-main" id="link-input-heading">Enter your Xbox Gamertag</h3>
+                    <p class="modal-subtitle-main">We'll attach Standard Edition to this profile on release day.</p>
+                    
+                    <div class="input-action-row">
+                        <div class="input-wrapper">
+                            <input type="text" id="gamertag-input" placeholder="Johnsonxbox892 Xbox" autocomplete="off" maxlength="30">
+                        </div>
+                        <button class="store-action-btn" id="btn-find-account">Find</button>
+                    </div>
+                    <p class="input-error-msg" id="gamertag-error">Please enter a valid username.</p>
+
+                    <!-- Custom Profile Picture Uploader Option -->
+                    <div class="avatar-upload-container">
+                        <h4 class="upload-title">Or link your real profile picture</h4>
+                        <div class="upload-dropzone" id="avatar-dropzone">
+                            <svg viewBox="0 0 24 24" class="upload-icon">
+                                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                            </svg>
+                            <span class="upload-text"><strong>Click to upload</strong> or drag and drop</span>
+                            <span class="upload-subtext">PNG, JPG or JPEG (Max 5MB)</span>
+                            <input type="file" id="avatar-file-input" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 2: ACCOUNT CONFIRMATION (Intermediate View) -->
+            <div class="modal-stage" id="stage-confirm">
+                <div class="store-header" id="confirm-store-header">
+                    <span class="store-title" id="confirm-store-title">MICROSOFT STORE · ACCOUNT VERIFICATION</span>
+                    <button class="close-modal-btn" aria-label="Close modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <a href="#" class="back-link" id="btn-back-to-link">← Back</a>
+                    
+                    <h3 class="modal-title-main confirm-title">Is this the account you want to pre-order GTA VI on?</h3>
+                    
+                    <!-- Premium Gamer Profile Card -->
+                    <div class="gamer-profile-card">
+                        <div class="avatar-glow"></div>
+                        <div class="profile-layout">
+                            <div class="avatar-container">
+                                <img src="assets/avatar_xbox.png" alt="Gamer Avatar" class="gamer-avatar" id="confirm-avatar-img">
+                            </div>
+                            <div class="profile-info">
+                                <div class="profile-status">
+                                    <span class="status-indicator online"></span>
+                                    <span class="status-text">Online</span>
+                                </div>
+                                <h4 class="gamer-username" id="confirm-username-text">Johnsonxbox892 Xbox</h4>
+                                <p class="gamer-platform" id="confirm-platform-text">Xbox Live Network</p>
+                            </div>
+                        </div>
+                    </div>                    <!-- Help Tooltip/Note for PSN/Xbox profiles - hidden by default -->
+                    <div class="avatar-sync-tip" id="avatar-sync-tip" style="display: none;">
+                        <span class="info-icon">ℹ</span>
+                        <span class="tip-text" id="sync-tip-text">If your real avatar isn't showing, search your ID on <a href="https://psnprofiles.com" target="_blank">PSNProfiles</a> first to index it.</span>
+                    </div>
+                    <div class="confirm-actions">
+                        <button class="store-action-btn confirm-yes-btn" id="btn-confirm-yes">Yes, pre-order on this account</button>
+                        <button class="store-cancel-btn" id="btn-confirm-no">No, change account</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 3: CHECKOUT -->
+            <div class="modal-stage" id="stage-checkout">
+                <div class="store-header" id="checkout-store-header">
+                    <span class="store-title" id="checkout-store-title">Microsoft Store · Checkout</span>
+                    <span class="checkout-ref-code" id="checkout-ref-code">XBL-5406-398653</span>
+                </div>
+                <div class="modal-body">
+                    <a href="#" class="back-link" id="btn-back-to-confirm">← Back</a>
+                    
+                    <div class="checkout-layout">
+                        <!-- Left Panel: Product Information -->
+                        <div class="checkout-product-card">
+                            <div class="cover-image-container">
+                                <img src="assets/gta6_cover.png" alt="GTA VI Cover" class="product-cover" id="checkout-cover-img">
+                            </div>
+                            <div class="product-info-block">
+                                <span class="preorder-tag">DIGITAL PRE-ORDER</span>
+                                <h4 class="product-title">Grand Theft Auto VI</h4>
+                                <p class="product-edition" id="checkout-edition-text">Standard Edition</p>
+                                <p class="delivery-dest">Delivers to <strong id="checkout-deliver-username">Johnsonxbox892</strong></p>
+                                <span class="platform-badge" id="checkout-platform-badge">XBOX SERIES X|S</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Price breakdown and Payment -->
+                        <div class="checkout-pricing-panel">
+                            <div class="pricing-rows">
+                                <div class="price-row">
+                                    <span class="price-label" id="checkout-price-label">Standard Edition</span>
+                                    <span class="price-value" id="checkout-price-value">£69.99</span>
+                                </div>
+                                <div class="price-row vat-row">
+                                    <span class="price-label">VAT (included)</span>
+                                    <span class="price-value" id="checkout-vat-value">£14.00</span>
+                                </div>
+                                <div class="price-row total-row">
+                                    <span class="price-label">Total</span>
+                                    <span class="price-value" id="checkout-total-value">£69.99</span>
+                                </div>
+                            </div>
+
+                            <div class="payment-method-card">
+                                <span class="section-label">PAYMENT METHOD</span>
+                                <div class="card-details-layout">
+                                    <div class="visa-logo-wrapper">
+                                        <span class="visa-text">VISA</span>
+                                    </div>
+                                    <div class="card-text-info">
+                                        <div class="card-owner">James Mitchell</div>
+                                        <div class="card-number">•••• •••• •••• 4821</div>
+                                        <div class="visa-secure-badge">
+                                            <svg viewBox="0 0 24 24" class="secure-icon"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                                            <span>Visa Secure enrolled</span>
+                                        </div>
+                                    </div>
+                                    <button class="change-payment-btn">CHANGE</button>
+                                </div>
+                            </div>
+
+                            <div class="security-banner">
+                                <span class="shield-dot"></span>
+                                <span>Protected by Visa Secure 3-D Secure 2.2 authentication</span>
+                            </div>
+
+                            <button class="store-action-btn purchase-btn" id="btn-confirm-purchase">Confirm purchase - £69.99</button>
+                            <p class="terms-text">By selecting Confirm purchase you agree to the Terms of Sale and Usage rules. You will complete Visa Secure authentication before your card is charged.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STAGE 4: PRE-ORDER CONFIRMED (Success) -->
+            <div class="modal-stage" id="stage-success">
+                <div class="modal-body success-body">
+                    <!-- Animated Checkmark -->
+                    <div class="checkmark-circle">
+                        <div class="checkmark-stem"></div>
+                        <div class="checkmark-kick"></div>
+                    </div>
+                    
+                    <h3 class="success-title">Pre-order confirmed</h3>
+                    <p class="success-desc"><span id="success-edition-text">Standard Edition</span> is reserved for <strong id="success-username">Johnsonxbox892</strong> on <strong id="success-platform">Xbox Series X|S</strong>. You'll be able to pre-load before launch.</p>
+                    
+                    <!-- Receipt Table -->
+                    <div class="receipt-card">
+                        <div class="receipt-row">
+                            <span class="receipt-label">Order</span>
+                            <span class="receipt-value" id="receipt-order-id">816-1802-412781</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span class="receipt-label">Receipt</span>
+                            <span class="receipt-value" id="receipt-email">johnsonxbox@proton.me</span>
+                        </div>
+                        <div class="receipt-row total-row">
+                            <span class="receipt-label">Total charged</span>
+                            <span class="receipt-value" id="receipt-total-value">£69.99</span>
+                        </div>
+                    </div>
+
+                    <button class="store-action-btn success-done-btn" id="btn-success-done">Done</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="position: fixed; bottom: 10px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.2); pointer-events: none; z-index: 1000;">v1.0.1 - Local Profile Pictures Enabled</div>
+
+    <!-- Scripts -->
+    <script src="app_v2.js"></script>
+</body>
+</html>
