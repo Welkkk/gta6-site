@@ -89,8 +89,9 @@ a {
     position: absolute;
     top: 0;
     left: 0;
-    width: 140%;
-    height: 100%;
+    width: 170%;
+    height: 120%;
+    top: -10%;
     background-image: url('assets/gta6_bg_real_clean.png');
     background-size: cover;
     background-position: center 40%;
@@ -100,8 +101,8 @@ a {
 }
 
 @keyframes bgPan {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-28.57%); }
+    0%   { transform: translateX(0) scale(0.82); }
+    100% { transform: translateX(-20%) scale(0.82); }
 }
 
 .bg-overlay {
