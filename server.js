@@ -83,13 +83,23 @@ function generateKeyString() {
 
 // API: Generate new key
 app.post('/api/generate', async (req, res) => {
-    const { user } = req.body;
+    const { user, durationDays } = req.body;
     const newKey = generateKeyString();
+
+    // Compute expiry
+    let expiresAt = null;
+    if (durationDays && parseInt(durationDays) > 0) {
+        const exp = new Date();
+        exp.setDate(exp.getDate() + parseInt(durationDays));
+        expiresAt = exp.toISOString();
+    }
+
     const keyData = {
         activated: false,
         fingerprint: null,
         activatedAt: null,
-        user: user || ''
+        user: user || '',
+        expiresAt
     };
     
     if (keysCollection) {
@@ -155,6 +165,11 @@ app.post('/api/verify', async (req, res) => {
     if (!keyData) {
         return res.json({ success: false, reason: 'Invalid license key.' });
     }
+
+    // Check expiry
+    if (keyData.expiresAt && new Date(keyData.expiresAt) < new Date()) {
+        return res.json({ success: false, reason: 'This key has expired.' });
+    }
     
     if (keyData.activated) {
         if (keyData.fingerprint === fingerprint) {
@@ -179,6 +194,11 @@ app.post('/api/activate', async (req, res) => {
             const keyDoc = await keysCollection.findOne({ _id: key });
             if (!keyDoc) {
                 return res.json({ success: false, reason: 'License key not found. Please verify spelling.' });
+            }
+
+            // Check expiry
+            if (keyDoc.expiresAt && new Date(keyDoc.expiresAt) < new Date()) {
+                return res.json({ success: false, reason: 'This key has expired.' });
             }
             
             if (keyDoc.activated) {

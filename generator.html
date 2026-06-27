@@ -267,7 +267,15 @@
 
         <section class="control-panel">
             <div class="generate-controls">
-                <input type="text" id="user-input" class="input-user" placeholder="User name / Note (Optional)">
+                <input type="text" id="user-input" class="input-user" placeholder="User / Note (Optionnel)">
+                <select id="duration-select" class="input-user" style="width:180px; cursor:pointer;">
+                    <option value="0">&#x221E; Permanent</option>
+                    <option value="1">1 jour</option>
+                    <option value="3">3 jours</option>
+                    <option value="7">7 jours</option>
+                    <option value="30">30 jours</option>
+                    <option value="365">1 an</option>
+                </select>
                 <button class="btn-generate" id="btn-generate">Generate License Key</button>
             </div>
             <div class="key-display" id="key-display">
@@ -284,6 +292,7 @@
                         <th>Access Key</th>
                         <th>User / Note</th>
                         <th>Status</th>
+                        <th>Expiration</th>
                         <th>Device Fingerprint</th>
                         <th>Activated At</th>
                         <th>Action</th>
@@ -313,24 +322,46 @@
                 
                 const entries = Object.entries(keys);
                 if (entries.length === 0) {
-                    keysTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No keys generated yet.</td></tr>`;
+                    keysTbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No keys generated yet.</td></tr>`;
                     return;
                 }
+
+                const now = new Date();
 
                 // Render latest keys first
                 entries.reverse().forEach(([key, data]) => {
                     const row = document.createElement('tr');
                     
-                    const statusClass = data.activated ? 'status-activated' : 'status-unused';
-                    const statusText = data.activated ? 'Activated' : 'Unused';
+                    // Check expiry
+                    let expiryText = '∞ Permanent';
+                    let expiryStyle = 'color: var(--text-muted);';
+                    let isExpired = false;
+                    if (data.expiresAt) {
+                        const expDate = new Date(data.expiresAt);
+                        isExpired = expDate < now;
+                        expiryText = expDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'short', day: 'numeric' });
+                        expiryStyle = isExpired
+                            ? 'color: #ff4444; font-weight: 700;'
+                            : 'color: #44ff88; font-weight: 600;';
+                        if (isExpired) expiryText = '⛔ ' + expiryText;
+                    }
+
+                    // Status
+                    let statusClass = data.activated ? 'status-activated' : 'status-unused';
+                    let statusText = data.activated ? 'Activated' : 'Unused';
+                    if (isExpired) { statusClass = 'status-unused'; statusText = 'Expired'; }
+
                     const fingerprint = data.fingerprint ? data.fingerprint : '—';
                     const activatedAt = data.activatedAt ? new Date(data.activatedAt).toLocaleString() : '—';
                     const user = data.user ? data.user : '—';
+
+                    if (isExpired) row.style.opacity = '0.6';
 
                     row.innerHTML = `
                         <td class="td-key">${key}</td>
                         <td style="color: var(--accent-orange); font-weight: 500;">${user}</td>
                         <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td style="${expiryStyle}">${expiryText}</td>
                         <td class="td-fingerprint" title="${fingerprint}">${fingerprint}</td>
                         <td>${activatedAt}</td>
                         <td>
@@ -348,18 +379,21 @@
         // Generate click
         btnGenerate.addEventListener('click', async () => {
             const userInput = document.getElementById('user-input');
+            const durationSelect = document.getElementById('duration-select');
             const userVal = userInput.value.trim();
+            const durationDays = parseInt(durationSelect.value);
             try {
                 const res = await fetch('/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ user: userVal })
+                    body: JSON.stringify({ user: userVal, durationDays })
                 });
                 const data = await res.json();
                 if (data.success) {
                     keyText.innerText = data.key;
                     keyDisplay.style.display = 'flex';
                     userInput.value = ''; // clear input
+                    durationSelect.value = '0'; // reset to Permanent
                     loadKeys();
                 }
             } catch (e) {
@@ -369,7 +403,7 @@
 
         // Delete key
         async function deleteKey(key) {
-            if (confirm(`Are you sure you want to delete the key ${key}?`)) {
+            if (confirm(`Supprimer la clé ${key} ?`)) {
                 try {
                     const res = await fetch(`/api/keys/${key}`, { method: 'DELETE' });
                     const data = await res.json();
@@ -400,3 +434,4 @@
     </script>
 </body>
 </html>
+
