@@ -216,6 +216,46 @@
         .btn-table-copy:hover {
             color: var(--accent-orange);
         }
+
+        .generate-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .input-user {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            width: 280px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-user:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+        }
+
+        .btn-table-delete {
+            background: transparent;
+            color: var(--danger-color);
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: underline;
+            margin-left: 12px;
+        }
+
+        .btn-table-delete:hover {
+            color: #ff5252;
+        }
     </style>
 </head>
 <body>
@@ -226,7 +266,10 @@
         </header>
 
         <section class="control-panel">
-            <button class="btn-generate" id="btn-generate">Generate License Key</button>
+            <div class="generate-controls">
+                <input type="text" id="user-input" class="input-user" placeholder="User name / Note (Optional)">
+                <button class="btn-generate" id="btn-generate">Generate License Key</button>
+            </div>
             <div class="key-display" id="key-display">
                 <span class="key-text" id="key-text">GTA6-XXXX-XXXX-XXXX-XXXX</span>
                 <button class="btn-copy" id="btn-copy">Copy Key</button>
@@ -239,6 +282,7 @@
                 <thead>
                     <tr>
                         <th>Access Key</th>
+                        <th>User / Note</th>
                         <th>Status</th>
                         <th>Device Fingerprint</th>
                         <th>Activated At</th>
@@ -269,7 +313,7 @@
                 
                 const entries = Object.entries(keys);
                 if (entries.length === 0) {
-                    keysTbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No keys generated yet.</td></tr>`;
+                    keysTbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No keys generated yet.</td></tr>`;
                     return;
                 }
 
@@ -281,13 +325,18 @@
                     const statusText = data.activated ? 'Activated' : 'Unused';
                     const fingerprint = data.fingerprint ? data.fingerprint : '—';
                     const activatedAt = data.activatedAt ? new Date(data.activatedAt).toLocaleString() : '—';
+                    const user = data.user ? data.user : '—';
 
                     row.innerHTML = `
                         <td class="td-key">${key}</td>
+                        <td style="color: var(--accent-orange); font-weight: 500;">${user}</td>
                         <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                         <td class="td-fingerprint" title="${fingerprint}">${fingerprint}</td>
                         <td>${activatedAt}</td>
-                        <td><button class="btn-table-copy" onclick="copyToClipboard('${key}')">Copy</button></td>
+                        <td>
+                            <button class="btn-table-copy" onclick="copyToClipboard('${key}')">Copy</button>
+                            <button class="btn-table-delete" onclick="deleteKey('${key}')">Delete</button>
+                        </td>
                     `;
                     keysTbody.appendChild(row);
                 });
@@ -298,18 +347,42 @@
 
         // Generate click
         btnGenerate.addEventListener('click', async () => {
+            const userInput = document.getElementById('user-input');
+            const userVal = userInput.value.trim();
             try {
-                const res = await fetch('/api/generate', { method: 'POST' });
+                const res = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user: userVal })
+                });
                 const data = await res.json();
                 if (data.success) {
                     keyText.innerText = data.key;
                     keyDisplay.style.display = 'flex';
+                    userInput.value = ''; // clear input
                     loadKeys();
                 }
             } catch (e) {
                 alert('Server error generating key.');
             }
         });
+
+        // Delete key
+        async function deleteKey(key) {
+            if (confirm(`Are you sure you want to delete the key ${key}?`)) {
+                try {
+                    const res = await fetch(`/api/keys/${key}`, { method: 'DELETE' });
+                    const data = await res.json();
+                    if (data.success) {
+                        loadKeys();
+                    } else {
+                        alert(data.message || 'Failed to delete key.');
+                    }
+                } catch (e) {
+                    alert('Error deleting key.');
+                }
+            }
+        }
 
         // Copy click
         btnCopy.addEventListener('click', () => {

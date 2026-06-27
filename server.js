@@ -45,17 +45,33 @@ function generateKeyString() {
 
 // API: Generate new key
 app.post('/api/generate', (req, res) => {
+    const { user } = req.body;
     const keys = readKeys();
     const newKey = generateKeyString();
     
     keys[newKey] = {
         activated: false,
         fingerprint: null,
-        activatedAt: null
+        activatedAt: null,
+        user: user || ''
     };
     
     writeKeys(keys);
     res.json({ success: true, key: newKey });
+});
+
+// API: Delete/Revoke a key
+app.delete('/api/keys/:key', (req, res) => {
+    const keyToDelete = req.params.key;
+    const keys = readKeys();
+    
+    if (keys[keyToDelete]) {
+        delete keys[keyToDelete];
+        writeKeys(keys);
+        res.json({ success: true, message: 'Key deleted successfully.' });
+    } else {
+        res.json({ success: false, message: 'Key not found.' });
+    }
 });
 
 // API: List all keys for generator table
