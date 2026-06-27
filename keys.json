@@ -3,5 +3,10 @@
     "activated": true,
     "fingerprint": "PC-1099025127",
     "activatedAt": "2026-06-27T11:21:12.857Z"
+  },
+  "GTA6-IQ4I-PRNS-02TD-8SHL": {
+    "activated": false,
+    "fingerprint": null,
+    "activatedAt": null
   }
 }
