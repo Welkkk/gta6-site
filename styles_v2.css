@@ -91,10 +91,9 @@ a {
     left: 0;
     width: 150%;
     height: 100%;
-    background-image: url('assets/gta6_official_landscape.jpg');
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    background-position: left center;
+    background-image: url('assets/gta6_hero_4k.jpg');
+    background-size: cover;
+    background-position: center center;
     will-change: transform;
     animation: bgPan 35s ease-in-out infinite alternate;
 }
