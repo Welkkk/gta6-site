@@ -86,16 +86,21 @@ a {
 }
 
 .bg-image {
-    width: 100%;
+    width: 120%;
     height: 100%;
     background-image: url('assets/gta6_bg_real_clean.png');
     background-size: cover;
-    background-position: center 40%;
+    background-position: left 40%;
     filter: none;
-    transform: scale(1.02) translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    perspective: 1000px;
-    transition: transform 10s ease-out;
+    animation: bgPan 30s linear infinite;
+}
+
+@keyframes bgPan {
+    0%   { background-position: 0% 40%; }
+    50%  { background-position: 100% 40%; }
+    100% { background-position: 0% 40%; }
 }
 
 .bg-overlay {
